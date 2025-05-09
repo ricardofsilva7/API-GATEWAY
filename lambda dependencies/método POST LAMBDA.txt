@@ -1,0 +1,35 @@
+método POST LAMBDA
+
+import json
+import mysql.connector
+
+def lambda_handler(event, context):
+    try:
+        body = json.loads(event['body'])
+
+        cnx = mysql.connector.connect(
+            user='admin',
+            password='0qUvQdwh6BFRB8oaVjfj',
+            host='database-1.c74qm0ckygg8.us-east-2.rds.amazonaws.com',
+            database='mydatabase'
+        )
+
+        cursor = cnx.cursor()
+        insert_query = "INSERT INTO cool_stuff (Cool_Things, coolness_score) VALUES (%s, %s)"
+        insert_values = (body['Cool_Things'], body['coolness_score'])
+        cursor.execute(insert_query, insert_values)
+        cnx.commit()
+
+        cursor.close()
+        cnx.close()
+
+        return {
+            'statusCode': 200,
+            'body': json.dumps('Dados inseridos com sucesso!')
+        }
+
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': json.dumps(f'Erro ao inserir dados: {str(e)}')
+        }
