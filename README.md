@@ -53,7 +53,7 @@ pip install mysql-connector-python==8.0.26 -t .
 
 **- Posteriormente deve compactar a pasta das dependências da Lambda e realizar o upload na função Lambda criada na AWS:**
 
-![passo4](./images/10.png)
+![passo4](./images/10.PNG)
 
 ![passo4](./images/11.png)
 
