@@ -129,7 +129,7 @@ insert_query = "INSERT INTO cool_stuff (cool_data, coolness) VALUES (%s, %s)"
 
 ![passo6](./images/19.png)
 
-**- Criando Integração**
+**- Criando Integração e Rotas**
 
 ![passo6](./images/20.png)
 
