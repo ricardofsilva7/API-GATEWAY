@@ -7,11 +7,11 @@ Este guia tem como objetivo demonstrar o processo completo de criação de uma a
 
 ## 🗂️ Sumário
 
-1. [🔧 Criação do Banco de Dados com RDS](#1--criação-do-banco-de-dados-com-amazon-rds)  
-2. [⚙️ Setup de Ambiente e Dependências Lambda](#2--setup-do-ambiente-lambda-e-dependências)  
-3. [📦 Criação e Deploy da Função Lambda](#3--criação-e-deploy-da-função-lambda)  
-4. [🔗 Conexão Lambda ↔️ RDS](#4--conectando-lambda-ao-rds)  
-5. [🌐 Configuração do API Gateway](#5--configuração-do-api-gateway)  
+1. [🔧 Criação do Banco de Dados com RDS](##1--criação-do-banco-de-dados-com-amazon-rds)  
+2. [⚙️ Setup de Ambiente e Dependências Lambda](##2--setup-do-ambiente-lambda-e-dependências)  
+3. [📦 Criação e Deploy da Função Lambda](##3--criação-e-deploy-da-função-lambda)  
+4. [🔗 Conexão Lambda ↔️ RDS](##4--conectando-lambda-ao-rds)  
+5. [🌐 Configuração do API Gateway](##5--configuração-do-api-gateway)  
 
 ---
 
