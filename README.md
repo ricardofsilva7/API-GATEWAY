@@ -7,11 +7,11 @@ Este guia tem como objetivo demonstrar o processo completo de criação de uma a
 
 ## 🗂️ Sumário
 
-1. [🔧 Criação do Banco de Dados com RDS](##1--criação-do-banco-de-dados-com-amazon-rds)  
-2. [⚙️ Setup de Ambiente e Dependências Lambda](##2--setup-do-ambiente-lambda-e-dependências)  
-3. [📦 Criação e Deploy da Função Lambda](##3--criação-e-deploy-da-função-lambda)  
-4. [🔗 Conexão Lambda ↔️ RDS](##4--conectando-lambda-ao-rds)  
-5. [🌐 Configuração do API Gateway](##5--configuração-do-api-gateway)  
+1. ![🔧 Criação do Banco de Dados com RDS](https://github.com/ricardofsilva7/API-GATEWAY#1---%EF%B8%8F-cria%C3%A7%C3%A3o-do-banco-de-dados-com-amazon-rds)  
+2. [⚙️ Setup de Ambiente e Dependências Lambda](https://github.com/ricardofsilva7/API-GATEWAY#2---%EF%B8%8F-setup-do-ambiente-lambda-e-depend%C3%AAncias)  
+3. [📦 Criação e Deploy da Função Lambda](https://github.com/ricardofsilva7/API-GATEWAY#3----cria%C3%A7%C3%A3o-e-deploy-da-fun%C3%A7%C3%A3o-lambda)  
+4. [🔗 Conexão Lambda ↔️ RDS](https://github.com/ricardofsilva7/API-GATEWAY#4----conectando-lambda-ao-rds)  
+5. [🌐 Configuração do API Gateway](https://github.com/ricardofsilva7/API-GATEWAY#5----configura%C3%A7%C3%A3o-do-api-gateway)  
 
 ---
 
