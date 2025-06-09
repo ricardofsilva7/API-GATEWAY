@@ -55,6 +55,7 @@ pip install mysql-connector-python==8.0.26 -t .
 
 ![passo4](./images/10.PNG)
 
+
 ![passo4](./images/11.png)
 
 
@@ -80,7 +81,7 @@ pip install mysql-connector-python==8.0.26 -t .
 
 ![passo5](./images/14.png)
 
-**OBS: Caso não tenha criado o banco de dados e queria criar para tese, apenas adicione o código abaixo:**
+**OBS: Caso não tenha criado o banco de dados e queria criar para teste, apenas adicione o código abaixo:**
 
 ```
 cursor = cnx.cursor()
