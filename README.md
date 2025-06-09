@@ -1,48 +1,74 @@
-# Documentação - AWS
 
-###  Passo a Passo para criação de Banco de dados / API Gateway
+# 🧭 Documentação Técnica - Projeto AWS API Gateway com Lambda & RDS
 
-### 1 - Criação do Banco de Dados via Amazon RDS (Relational Database Service)
+Este guia tem como objetivo demonstrar o processo completo de criação de uma aplicação utilizando **AWS Lambda**, **Amazon API Gateway** e **Amazon RDS (MySQL)**, com deploy de funções serverless capazes de manipular dados em um banco relacional na nuvem.
 
-**Definição**: *O **Amazon RDS** é um serviço de banco de dados relacional na nuvem, gerenciado pela AWS, que facilita a configuração, operação e escalabilidade de bancos de dados relacionais. Ele oferece suporte a vários mecanismos de banco de dados, como **MySQL, PostgreSQL, MariaDB, SQL Server, Oracle e Db2**, permitindo que você utilize seu código, aplicações e ferramentas existentes.*
+---
 
-<br>
+## 🗂️ Sumário
 
-![passo1](./images/1.png)
+1. [🔧 Criação do Banco de Dados com RDS](https://github.com/ricardofsilva7/API-GATEWAY#1---%EF%B8%8F-cria%C3%A7%C3%A3o-do-banco-de-dados-com-amazon-rds)  
+2. [⚙️ Setup de Ambiente e Dependências Lambda](https://github.com/ricardofsilva7/API-GATEWAY#2---%EF%B8%8F-setup-do-ambiente-lambda-e-depend%C3%AAncias)  
+3. [📦 Criação e Deploy da Função Lambda](https://github.com/ricardofsilva7/API-GATEWAY#3----cria%C3%A7%C3%A3o-e-deploy-da-fun%C3%A7%C3%A3o-lambda)  
+4. [🔗 Conexão Lambda ↔️ RDS](https://github.com/ricardofsilva7/API-GATEWAY#4----conectando-lambda-ao-rds)  
+5. [🌐 Configuração do API Gateway](https://github.com/ricardofsilva7/API-GATEWAY#5----configura%C3%A7%C3%A3o-do-api-gateway)  
 
-![passo1](./images/2.png)
+---
 
-![passo1](./images/3.png)
+## 1 - 🗄️ Criação do Banco de Dados com Amazon RDS
 
-![passo1](./images/4.png)
+**O que é?**  
+Amazon RDS (Relational Database Service) é um serviço gerenciado de banco de dados relacional. Ele facilita a configuração, operação e escalabilidade de bancos como MySQL, PostgreSQL, entre outros.
 
-***
+📌 **Passos**:
+- Acesse o console AWS e navegue até o RDS.
+- Selecione a criação de uma nova instância de banco de dados.
+- Escolha o mecanismo (ex: **MySQL**), defina nome, credenciais, e tipo de instância.
 
-### 2 - Criar as dependências LAMBDA
+📸 **Exemplos visuais**:
+![passo1](./images/1.png)  
+![passo2](./images/2.png)  
+![passo3](./images/3.png)  
+![passo4](./images/4.png)  
 
-**Definição**: ***AWS Lambda** é um serviço de computação sem servidor (serverless) da Amazon que permite executar código em resposta a eventos, sem precisar provisionar ou gerenciar servidores.
-O código é executado automaticamente quando acionado por gatilhos como **API Gateway**, **eventos de banco de dados**, **uploads no S3**, entre outros.*
+---
 
-<br>
+## 2 - ⚙️ Setup do Ambiente Lambda e Dependências
 
-**Instalar as dependências do MySQL**
+**O que é?**  
+AWS Lambda permite executar código sem provisionar servidores. Aqui, criaremos uma função Lambda que interage com o banco MySQL no RDS.
 
-```comando
+1. Crie uma nova pasta e posteriormente instale as depências do MySQL via CMD usando o comando abaixo.
+
+📌 **Instale as dependências locais (no mesmo diretório (pasta) da função):**
+
+```bash
 pip install mysql-connector-python==8.0.26 -t .
 ```
 
-![passo2](./images/5.png)
+📸  
+![passo5](./images/5.png)
 
-***
+---
 
-### 3 - Criar função Lambda na AWS
+## 3 - 📦 Criação e Deploy da Função Lambda
 
-![passo3](./images/6.png)
+1. No console AWS, crie uma nova função Lambda.
+2. Escolha "Python" como runtime e configure permissões.
+3. Compacte (ZIP) a pasta com a função `.py` + dependências (`mysql-connector-python`) e faça upload na função Lambda criada.
 
-![passo3](./images/7.png)
+📸  
+![passo6](./images/6.png)  
+![passo7](./images/7.png)  
+![passo8](./images/8.png)  
+![passo9](./images/9.png)  
+![passo10](./images/10.PNG)  
+![passo11](./images/11.png)
 
-***
+✅ **Teste inicial da função**:
+Adicione `import mysql.connector` no início do código. Execute um teste simples — a resposta esperada é:
 
+<<<<<<< HEAD
 ### 4 - Salvar função da Lambda (AWS) como um arquivo py dentro da pasta que foi instalada as dependências Lambda:
 
 ![passo4](./images/8.png)
@@ -77,63 +103,116 @@ pip install mysql-connector-python==8.0.26 -t .
         password='XXXXXXXX',
         host='endpoint Amazon RDS',
     )
+=======
+```json
+{
+  "statusCode": 200,
+  "body": "Success!"
+}
+>>>>>>> 134d90e29fe236d23842cdae8ecc9ce9b81b3edf
 ```
 
-![passo5](./images/14.png)
+📸  
+![passo12](./images/13.png)
 
+<<<<<<< HEAD
 **OBS: Caso não tenha criado o banco de dados e queria criar para teste, apenas adicione o código abaixo:**
+=======
+---
+>>>>>>> 134d90e29fe236d23842cdae8ecc9ce9b81b3edf
 
+## 4 - 🔗 Conectando Lambda ao RDS
+
+Utilize o endpoint do banco de dados RDS para conectar sua Lambda.
+
+📌 **Exemplo básico de conexão**:
+
+```python
+import mysql.connector
+
+cnx = mysql.connector.connect(
+    user='admin',
+    password='SENHA_DO_SEU_BANCO',
+    host='endpoint-do-rds.amazonaws.com',
+)
 ```
+
+📸  
+![passo13](./images/14.png)
+
+📌 **Criação de banco e tabela (caso não existam):**
+
+```python
 cursor = cnx.cursor()
-    create_db_query = "CREATE DATABASE IF NOT EXISTS mydatabase"
-    cursor.execute(create_db_query)
+cursor.execute("CREATE DATABASE IF NOT EXISTS mydatabase")
+cursor.execute("USE mydatabase")
 
-    cursor.close()
-    cnx.close()
-```
-
-**Criar Tabela, caso não tenha criado:**
-
-```
 table_exists_query = "SHOW TABLES LIKE 'cool_stuff'"
-    cursor.execute(table_exists_query)
-    table_exists = cursor.fetchone()
-
-    if not table_exists:
-        create_table_query = "CREATE TABLE cool_stuff (id INT AUTO_INCREMENT PRIMARY KEY, cool_data VARCHAR(255), coolness INT)"
-    cursor.execute(create_table_query)
+cursor.execute(table_exists_query)
+if not cursor.fetchone():
+    cursor.execute("""
+        CREATE TABLE cool_stuff (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            cool_data VARCHAR(255),
+            coolness INT
+        )
+    """)
     cnx.commit()
 ```
 
-**Inserir valores na tabela:**
+📌 **Inserção de dados**:
 
-```
+```python
 insert_query = "INSERT INTO cool_stuff (cool_data, coolness) VALUES (%s, %s)"
-    insert_values = ("This is some cool data", 100)
-    cursor.execute(insert_query, insert_values)
+cursor.execute(insert_query, ("This is some cool data", 100))
+cnx.commit()
+cursor.close()
+cnx.close()
 ```
 
-<br>
+---
 
-### 6 - Criando e Configurando a `API GATEWAY`:
+## 5 - 🌐 Configuração do API Gateway
 
-![passo6](./images/15.png)
+**O que é?**  
+Amazon API Gateway permite expor sua Lambda como uma API RESTful.
 
-![passo6](./images/16.png)
+📌 **Etapas**:
+- Crie uma nova API.
+- Defina rotas (ex: `GET /data`, `POST /insert`).
+- Faça a integração com a função Lambda.
+- Teste suas rotas diretamente no console.
 
-![passo6](./images/17.png)
+📸  
+![passo14](./images/15.png)  
+![passo15](./images/16.png)  
+![passo16](./images/17.png)  
+![passo17](./images/18.png)  
+![passo18](./images/19.png)  
+![passo19](./images/20.png)  
+![passo20](./images/21.png)  
+![passo21](./images/22.png)
 
+---
 
-**- Criando Rotas**
+## ✅ Resultado Esperado
 
-![passo6](./images/18.png)
+Após a configuração correta, você terá uma **API totalmente serverless** na AWS, com rotas REST que executam funções Python na Lambda, conectando-se ao MySQL no RDS e manipulando dados em tempo real.
 
-![passo6](./images/19.png)
+---
 
-**- Criando Integração e Rotas**
+## 🧩 Melhorias Futuras (Sugestões)
 
-![passo6](./images/20.png)
+- Adicionar autenticação via AWS Cognito ou API Keys.
+- Implementar monitoramento com CloudWatch.
+- Criar estrutura de múltiplos ambientes (dev/staging/prod).
+- Automatizar deploy com Terraform ou AWS SAM.
 
-![passo6](./images/21.png)
+---
 
-![passo6](./images/22.png)
+## 📌 Requisitos
+
+- Conta AWS
+- IAM com permissões adequadas
+- Python 3.8+
+- AWS CLI (opcional)
